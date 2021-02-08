@@ -37,6 +37,7 @@ namespace VRChatActivityLogger
         static public Regex SendFriendRequestDetail { get; set; }
         static public Regex ReceivedFriendRequestDetail { get; set; }
         static public Regex AcceptFriendRequestDetail { get; set; }
+        // static public Regex InviteResponseDetail { get; set; }
         static public Regex All { get; }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace VRChatActivityLogger
 
             string receivedInvite = header + @"Received Message of type: notification content:.+""type"":""invite"".+$";
             string receivedRequestInvite = header + @"Received Message of type: notification content:.+""type"":""requestInvite"".+$";
-            string sendInvite = header + @"Send notification:.+type:invite.+$";
+            string sendInvite = header + @"Send notification:.+type:invite,.+$";
             string sendRequestInvite = header + @"Send notification:.+type:requestInvite.+$";
             string joinedRoom1 = header + @"\[(RoomManager|[Ǆǅ]*)\] Joining w.+$";
             string joinedRoom2 = header + @"\[(RoomManager|[Ǆǅ]*)\] Joining or Creating Room:.+$";
@@ -57,6 +58,7 @@ namespace VRChatActivityLogger
             string sendFriendRequest = header + @"Send notification:.+type:friendRequest.+$";
             string receivedFriendRequest = header + @"Received Message of type: notification content:.+""type"":""friendRequest"".+$";
             string acceptFriendRequest = header + @"AcceptFriendRequest.+$";
+            // string inviteResponse = header +  @"Send notification:.+type:inviteResponse.+$";
 
             //ログの種類判別(一括)
             string all = "";
@@ -78,13 +80,14 @@ namespace VRChatActivityLogger
             string receivedInviteDetail = detailHeader + @"Received Message of type: notification content: ({{.+}}) received at";
             string receivedRequestInviteDetail = detailHeader + @"Received Message of type: notification content: ({{.+}}) received at";
             string sendInviteDetail = detailHeader + @".+to (.{40}) of.+worldId=(.+), worldName=(.+)}},";
-            string sendRequestInviteDetail = detailHeader + @".+to (.{40}) of";
+            string sendRequestInviteDetail = detailHeader + @".+to (.{40}) of.+type:requestInvite";
             string metPlayerDetail = detailHeader + @"\[(Player|[Ǆǅ]*)\] Initialized PlayerAPI ""(.*)"" is (remote|local)$";
             string joinedRoom1Detail = detailHeader + @"\[(RoomManager|[Ǆǅ]*)\] Joining (.+)$";
             string joinedRoom2Detail = detailHeader + @"\[(RoomManager|[Ǆǅ]*)\] Joining or Creating Room: (.+)$";
             string sendFriendRequestDetail = detailHeader + @".+to (.{40}) of";
             string receivedFriendRequestDetail = detailHeader + @"Received Message of type: notification content: ({{.+}}) received at";
             string acceptFriendRequestDetail = detailHeader + @".+username:(.+), sender user id:(.{40}).+id: (.{40}),";
+            // string inviteResponseDetail = detailHeader + @".+to (.{40}) of.+type:inveteResponse";
 
             ReceivedInviteDetail = new Regex(receivedInviteDetail, RegexOptions.Compiled);
             ReceivedRequestInviteDetail = new Regex(receivedRequestInviteDetail, RegexOptions.Compiled);
@@ -96,6 +99,7 @@ namespace VRChatActivityLogger
             SendFriendRequestDetail = new Regex(sendFriendRequestDetail, RegexOptions.Compiled);
             ReceivedFriendRequestDetail = new Regex(receivedFriendRequestDetail, RegexOptions.Compiled);
             AcceptFriendRequestDetail = new Regex(acceptFriendRequestDetail, RegexOptions.Compiled);
+            // InviteResponseDetail = new Regex(inviteResponseDetail, RegexOptions.Compiled);
         }
     }
 }

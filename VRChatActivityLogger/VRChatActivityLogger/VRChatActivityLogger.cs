@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -237,6 +237,17 @@ namespace VRChatActivityLogger
                         activityLogs.Add(new ActivityLog
                         {
                             ActivityType = ActivityType.MetPlayer,
+                            Timestamp = DateTime.Parse(m.Groups[1].Value),
+                            UserName = m.Groups[3].Value,
+                        });
+                    }
+                    else if (match.Groups[PatternType.LeavePlayer].Value.Length != 0)
+                    {
+                        // logger.Error($"#{processingLineNumber}:[LeavePlayer]: {rawData}");
+                        var m = RegexPatterns.LeavePlayerDetail.Match(match.ToString());
+                        activityLogs.Add(new ActivityLog
+                        {
+                            ActivityType = ActivityType.LeavePlayer,
                             Timestamp = DateTime.Parse(m.Groups[1].Value),
                             UserName = m.Groups[3].Value,
                         });

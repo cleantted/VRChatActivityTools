@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,6 +17,7 @@ namespace VRChatActivityLogger
         static public string JoinedRoom1 = "JoinedRoom1";
         static public string JoinedRoom2 = "JoinedRoom2";
         static public string MetPlayer = "MetPlayer";
+        static public string LeavePlayer = "LeavePlayer";
         static public string SendFriendRequest = "SendFriendRequest";
         static public string ReceivedFriendRequest = "ReceivedFriendRequest";
         static public string AcceptFriendRequest = "AcceptFriendRequest";
@@ -34,6 +35,7 @@ namespace VRChatActivityLogger
         static public Regex JoinedRoom1Detail { get; }
         static public Regex JoinedRoom2Detail { get; }
         static public Regex MetPlayerDetail { get; }
+        static public Regex LeavePlayerDetail { get; }
         static public Regex SendFriendRequestDetail { get; set; }
         static public Regex ReceivedFriendRequestDetail { get; set; }
         static public Regex AcceptFriendRequestDetail { get; set; }
@@ -55,6 +57,7 @@ namespace VRChatActivityLogger
             string joinedRoom1 = header + @"\[(RoomManager|[Ǆǅ]*)\] Joining w.+$";
             string joinedRoom2 = header + @"\[(RoomManager|[Ǆǅ]*)\] Joining or Creating Room:.+$";
             string metPlayer = header + @"\[(Player|[Ǆǅ]*)\] Initialized PlayerAPI.+$";
+            string leavePlayer = header + @"\[(Player|[Ǆǅ]*)\] Unregistering .+$";
             string sendFriendRequest = header + @"Send notification:.+type:friendRequest.+$";
             string receivedFriendRequest = header + @"Received Message of type: notification content:.+""type"":""friendRequest"".+$";
             string acceptFriendRequest = header + @"AcceptFriendRequest.+$";
@@ -69,6 +72,7 @@ namespace VRChatActivityLogger
             all += $@"(?<JoinedRoom1>{joinedRoom1})|";
             all += $@"(?<JoinedRoom2>{joinedRoom2})|";
             all += $@"(?<MetPlayer>{metPlayer})|";
+            all += $@"(?<LeavePlayer>{leavePlayer})|";
             all += $@"(?<SendFriendRequest>{sendFriendRequest})|";
             all += $@"(?<ReceivedFriendRequest>{receivedFriendRequest})|";
             all += $@"(?<AcceptFriendRequest>{acceptFriendRequest})";
@@ -82,6 +86,7 @@ namespace VRChatActivityLogger
             string sendInviteDetail = detailHeader + @".+to (.{40}) of.+worldId=(.+), worldName=(.+)}},";
             string sendRequestInviteDetail = detailHeader + @".+to (.{40}) of.+type:requestInvite";
             string metPlayerDetail = detailHeader + @"\[(Player|[Ǆǅ]*)\] Initialized PlayerAPI ""(.*)"" is (remote|local)$";
+            string leavePlayerDetail = detailHeader + @"\[(Player|[Ǆǅ]*)\] Unregistering (.*)$";
             string joinedRoom1Detail = detailHeader + @"\[(RoomManager|[Ǆǅ]*)\] Joining (.+)$";
             string joinedRoom2Detail = detailHeader + @"\[(RoomManager|[Ǆǅ]*)\] Joining or Creating Room: (.+)$";
             string sendFriendRequestDetail = detailHeader + @".+to (.{40}) of";
@@ -94,6 +99,7 @@ namespace VRChatActivityLogger
             SendInviteDetail = new Regex(sendInviteDetail, RegexOptions.Compiled);
             SendRequestInviteDetail = new Regex(sendRequestInviteDetail, RegexOptions.Compiled);
             MetPlayerDetail = new Regex(metPlayerDetail, RegexOptions.Compiled);
+            LeavePlayerDetail = new Regex(leavePlayerDetail, RegexOptions.Compiled);
             JoinedRoom1Detail = new Regex(joinedRoom1Detail, RegexOptions.Compiled);
             JoinedRoom2Detail = new Regex(joinedRoom2Detail, RegexOptions.Compiled);
             SendFriendRequestDetail = new Regex(sendFriendRequestDetail, RegexOptions.Compiled);

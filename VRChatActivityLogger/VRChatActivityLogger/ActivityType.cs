@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -35,5 +35,9 @@ namespace VRChatActivityLogger
 
         /// <summary>フレンドリクエストを承認した</summary>
         AcceptFriendRequest = 8,
+
+        /// <summary>プレイヤーがインスタンスを離れた</summary>
+        LeavePlayer = 9,
+
     }
 }

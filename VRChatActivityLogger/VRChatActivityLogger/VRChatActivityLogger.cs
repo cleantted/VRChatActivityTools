@@ -53,24 +53,22 @@ namespace VRChatActivityLogger
 
                 using (var db = new DatabaseContext())
                 {
-                    var lastActivity = db.ActivityLogs.Find(db.ActivityLogs.Max(a => a.ID));
-                    if (lastActivity != null)
-                    {
-                        var idBackup = lastActivity.ID;
-                        lastActivity.ID = null;
-                        for (int i = 0; i < activityLogs.Count; i++)
-                        {
-                            if (activityLogs[i].Timestamp == lastActivity.Timestamp)
-                            {
-                                if (activityLogs[i].Equals(lastActivity))
-                                {
-                                    activityLogs.RemoveRange(0, i + 1);
-                                    break;
-                                }
-                            }
-                        }
-                        lastActivity.ID = idBackup;
-                    }
+                    activityLogs.RemoveAll(log => (
+                        db.ActivityLogs.Count
+                            (
+                                row =>
+                                (
+                                    row.ActivityType == log.ActivityType &&
+                                    EqualityComparer<DateTime?>.Default.Equals(row.Timestamp, log.Timestamp) &&
+                                    row.NotificationID == log.NotificationID &&
+                                    row.UserID == log.UserID &&
+                                    row.UserName == log.UserName &&
+                                    row.WorldID == log.WorldID &&
+                                    row.WorldName == log.WorldName
+                                )
+                            ) > 0
+                        )
+                    );
 
                     using (var transaction = db.Database.BeginTransaction())
                     {

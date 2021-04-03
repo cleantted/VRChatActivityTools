@@ -131,6 +131,12 @@
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
                             <Style.Triggers>
+                                <DataTrigger Binding="{Binding Type}" Value="{x:Static shareddb:ActivityType.MetPlayer}">
+                                    <Setter Property="Foreground" Value="ForestGreen" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="{x:Static shareddb:ActivityType.LeavePlayer}">
+                                    <Setter Property="Foreground" Value="Firebrick" />
+                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="{x:Static shareddb:ActivityType.JoinedRoom}">
                                     <Setter Property="Background" Value="Plum" />
                                 </DataTrigger>

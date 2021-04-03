@@ -161,6 +161,10 @@ ALTER TABLE
     ""ActivityLogs""
 ADD COLUMN
     ""Url"" TEXT NULL;
+
+UPDATE ""ActivityLogs""
+SET ""ActivityType"" = 99
+WHERE ""ActivityType"" = 9;
 ";
             #endregion
 

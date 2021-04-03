@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -64,6 +64,7 @@ namespace VRChatActivityLogViewer
                 {
                     IsJoinedRoom = joinCheckBox.IsChecked ?? false,
                     IsMetPlayer = meetCheckBox.IsChecked ?? false,
+                    IsLeavePlayer = leaveCheckBox.IsChecked ?? false,
                     IsSendInvite = sendInvCheckBox.IsChecked ?? false,
                     IsSendRequestInvite = sendReqInvCheckBox.IsChecked ?? false,
                     IsReceivedInvite = recvInvCheckBox.IsChecked ?? false,

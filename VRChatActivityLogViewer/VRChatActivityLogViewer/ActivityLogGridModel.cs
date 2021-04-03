@@ -142,6 +142,13 @@ namespace VRChatActivityLogViewer
                 IsCopyableUserID = true;
                 IsDetailWindowEnabled = true;
             }
+            if (activityLog.ActivityType == ActivityType.LeavePlayer)
+            {
+                ActivityName = "Left";
+                Content = activityLog.UserName;
+                UserID = activityLog.UserID;
+                IsCopyableUserID = true;
+            }
         }
     }
 }

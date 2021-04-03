@@ -34,6 +34,9 @@ namespace VRChatActivityLogViewer
         /// <summary>フレンドリクエストを承認した履歴を含める</summary>
         public bool IsAcceptFriendRequest { get; set; } = true;
 
+        /// <summary>プレイヤーがLeaveした時間を含める</summary>
+        public bool IsLeavePlayer { get; set; } = true;
+
         /// <summary>検索する期間の始まり</summary>
         public DateTime? FromDateTime { get; set; } = null;
 

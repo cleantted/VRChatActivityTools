@@ -36,19 +36,19 @@ namespace VRChatActivityToolsShared.Database
         /// <summary>フレンドリクエストを承認した</summary>
         AcceptFriendRequest = 8,
 
-        /// <summary>プレイヤーがインスタンスを離れた</summary>
-        LeavePlayer = 9,
-
         /// <summary>inviteへの返信を送った</summary>
-        SendInviteResponse = 10,
+        SendInviteResponse = 9,
 
         /// <summary>inviteへの返信を受け取った</summary>
-        ReceivedInviteResponse = 11,
+        ReceivedInviteResponse = 10,
 
         /// <summary>reqInvへの返信を送った</summary>
-        SendRequestInviteResponse = 12,
+        SendRequestInviteResponse = 11,
 
         /// <summary>reqInvへの返信を受け取った</summary>
-        ReceivedRequestInviteResponse = 13,
+        ReceivedRequestInviteResponse = 12,
+
+        /// <summary>プレイヤーがインスタンスを離れた</summary>
+        LeavePlayer = 99,
     }
 }

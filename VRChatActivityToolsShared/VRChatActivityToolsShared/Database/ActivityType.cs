@@ -1,4 +1,8 @@
-﻿namespace VRChatActivityLogViewer
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace VRChatActivityToolsShared.Database
 {
     /// <summary>
     /// アクティビティの種類
@@ -31,5 +35,20 @@
 
         /// <summary>フレンドリクエストを承認した</summary>
         AcceptFriendRequest = 8,
+
+        /// <summary>プレイヤーがインスタンスを離れた</summary>
+        LeavePlayer = 9,
+
+        /// <summary>inviteへの返信を送った</summary>
+        SendInviteResponse = 10,
+
+        /// <summary>inviteへの返信を受け取った</summary>
+        ReceivedInviteResponse = 11,
+
+        /// <summary>reqInvへの返信を送った</summary>
+        SendRequestInviteResponse = 12,
+
+        /// <summary>reqInvへの返信を受け取った</summary>
+        ReceivedRequestInviteResponse = 13,
     }
 }

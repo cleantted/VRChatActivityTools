@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -74,8 +74,9 @@ namespace VRChatActivityLogger
                 // DB更新
                 using (var db = new DatabaseContext())
                 {
-                    activityLogs.RemoveAll(log => (
-                        db.ActivityLogs.Count
+                    activityLogs
+                    .RemoveAll(log => (
+                        db.ActivityLogs.AsEnumerable().Count
                             (
                                 row =>
                                 (
